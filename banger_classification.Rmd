@@ -1,0 +1,26 @@
+---
+title: "Banger Classification"
+author: "Michael Ortiz"
+date: '2022-06-06'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Banger Classification
+
+```{r}
+song_features_banger$key = as.factor(song_features_banger$key)
+song_features_banger$time_signature = as.factor(song_features_banger$time_signature)
+```
+
+In this section various models will be tested on the data
+
+### Logistic Regression
+
+```{r}
+glm.full <- glm(banger ~ energy + tempo + liveness*valence, data = song_features_banger, family = binomial)
+summary(glm.full)
+```
